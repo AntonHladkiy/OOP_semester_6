@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+
+    <changeSet author="Anton (generated)" id="1616264426192-1">
+        <createTable tableName="bets">
+            <column name="race_id" type="INTEGER">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_bets"/>
+            </column>
+            <column name="user_id" type="INTEGER">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_bets"/>
+            </column>
+            <column name="bet" type="FLOAT8"/>
+            <column name="runner_id" type="INTEGER"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Anton (generated)" id="1616264426192-2">
+        <createTable tableName="races">
+            <column autoIncrement="true" name="id" type="INTEGER">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="races_pkey"/>
+            </column>
+            <column name="name" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="runner_id1" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+            <column name="runner_id2" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+            <column name="coef1" type="FLOAT8">
+                <constraints nullable="false"/>
+            </column>
+            <column name="coef2" type="FLOAT8">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Anton (generated)" id="1616264426192-3">
+        <createTable tableName="runners">
+            <column autoIncrement="true" name="id" type="INTEGER">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="runners_pkey"/>
+            </column>
+            <column name="name" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Anton (generated)" id="1616264426192-4">
+        <createTable tableName="users">
+            <column autoIncrement="true" name="id" type="INTEGER">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="users_pkey"/>
+            </column>
+            <column name="username" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="password" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="role" type="ROLE">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Anton (generated)" id="1616264426192-5">
+        <addForeignKeyConstraint baseColumnNames="race_id" baseTableName="bets" constraintName="fk_bets_race_id" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="races" validate="true"/>
+    </changeSet>
+    <changeSet author="Anton (generated)" id="1616264426192-6">
+        <addForeignKeyConstraint baseColumnNames="runner_id" baseTableName="bets" constraintName="fk_bets_runner_id" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="runners" validate="true"/>
+    </changeSet>
+    <changeSet author="Anton (generated)" id="1616264426192-7">
+        <addForeignKeyConstraint baseColumnNames="runner_id1" baseTableName="races" constraintName="fk_races_runner_id1" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="runners" validate="true"/>
+    </changeSet>
+    <changeSet author="Anton (generated)" id="1616264426192-8">
+        <addForeignKeyConstraint baseColumnNames="runner_id2" baseTableName="races" constraintName="fk_races_runner_id2" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="runners" validate="true"/>
+    </changeSet>
+    <changeSet author="Anton (generated)" id="1616264426192-9">
+        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="bets" constraintName="fk_bets_user_id" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="users" validate="true"/>
+    </changeSet>
+</databaseChangeLog>
